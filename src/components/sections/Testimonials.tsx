@@ -42,8 +42,8 @@ export default function Testimonials() {
       </div>
 
       {/* --- MARQUEE AREA --- */}
-      {/* Masking Gradient: Biar pinggir kiri-kanan nge-fade halus */}
-      <div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_100px,_black_calc(100%-100px),transparent_100%)]">
+      {/* Kita ubah 100px menjadi 50px agar blurnya lebih tipis */}
+<div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_50px,_black_calc(100%-50px),transparent_100%)]">
         
         {/* CONTAINER ANIMASI (Menggunakan class dari globals.css) */}
         <div className="animate-marquee flex gap-6 px-4">
