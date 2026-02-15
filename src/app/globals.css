@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 62, 39, 35;
+  --background-rgb: 253, 248, 232;
+  --font-abril: "Abril Fatface", cursive;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --font-abril: var(--font-abril);
+  --font-jakarta: var(--font-jakarta);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: var(--font-jakarta);
+}
+
+html { scroll-behavior: smooth; }
+
+/* --- CUSTOM ANIMATIONS --- */
+
+/* 1. Marquee (Teks Berjalan) */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* 2. Infinite Scroll (Testimoni Berjalan) */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scroll {
+  animation: scroll-left 40s linear infinite;
+}
+
+/* Pause animasi saat di-hover mouse agar user bisa baca */
+.pause-on-hover:hover {
+  animation-play-state: paused;
 }
