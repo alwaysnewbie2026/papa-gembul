@@ -20,13 +20,22 @@ body {
 
 html { scroll-behavior: smooth; }
 
-/* ANIMASI MARQUEE (Running Text) */
+/* --- UPDATE ANIMASI MARQUEE (RUNNING TEXT) --- */
+/* Kita definisikan manual disini biar PASTI JALAN di Vercel */
 @keyframes marquee {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-50%); } /* Geser 50% ke kiri */
 }
+
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content; /* Pastikan lebar konten mengikuti isinya */
+  animation: marquee 30s linear infinite; /* Jalan terus tanpa henti */
+}
+
+/* Biar kalau dihover mouse, jalannya pelan/berhenti (biar bisa dibaca) */
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* --- OPTIMASI KHUSUS HP KENTANG (Layar < 768px) --- */
