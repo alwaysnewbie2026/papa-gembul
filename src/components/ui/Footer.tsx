@@ -14,9 +14,9 @@ export default function Footer() {
 
   // Data Rekening (Ganti dengan nomor asli Anda)
   const paymentMethods = [
-    { id: 'bca', bank: 'BCA', number: '123 456 7890', owner: 'A.N Papa Gembul', color: 'bg-blue-600' },
-    { id: 'mandiri', bank: 'MANDIRI', number: '100 000 200 300', owner: 'A.N Papa Gembul', color: 'bg-yellow-600' },
-    { id: 'bri', bank: 'BRI', number: '0000 01 000000 50 0', owner: 'A.N Papa Gembul', color: 'bg-orange-600' },
+    { id: 'bca', bank: 'BCA', number: '0389911269', owner: 'A.N Adisti Ayuningtyas KH (istri papa)', color: 'bg-blue-600' },
+    { id: 'Dana', bank: 'Dana', number: '089604150929', owner: 'A.N Adisti Ayuningtyas KH (istri papa)', color: 'bg-yellow-600' },
+
   ];
 
   // Fungsi Copy to Clipboard
@@ -47,20 +47,26 @@ export default function Footer() {
               <div className="space-y-3 pt-4">
                   <div className="flex items-start gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors group cursor-pointer">
                       <MapPin size={20} className="mt-1 group-hover:animate-bounce" />
-                      <span className="text-sm">Jl. Kurma Manis No. 88, Sukabumi, Jawa Barat, Indonesia.</span>
+                      <span className="text-sm">Jl. Sriwijaya No 10, Sukabumi, Jawa Barat, Indonesia.</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors group cursor-pointer">
-                      <Mail size={20} />
-                      <span className="text-sm">halo@papagembul.com</span>
-                  </div>
-                   <div className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors group cursor-pointer">
-                      <Instagram size={20} />
-                      <span className="text-sm">halo@papagembul.com</span>
-                  </div>
-                   <div className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors group cursor-pointer">
-                      <Phone size={20} />
-                      <span className="text-sm">halo@papagembul.com</span>
-                  </div>
+                  <a 
+  href="https://www.tiktok.com/@papa.gembul00" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="flex items-center gap-3 text-gray-400 hover:text-[#D4AF37] transition-colors group cursor-pointer"
+>
+    {/* Ikon TikTok (SVG Custom) */}
+    <svg 
+      viewBox="0 0 24 24" 
+      fill="currentColor" 
+      className="w-5 h-5 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+    
+    {/* Username TikTok */}
+    <span className="text-sm font-medium">@papa.gembul00</span>
+</a>
               </div>
           </div>
           
@@ -104,9 +110,27 @@ export default function Footer() {
                         <div className={`absolute left-0 top-0 bottom-0 w-1 ${method.color}`}></div>
                         
                         <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-[#D4AF37]">
-                                <CreditCard size={20} />
-                            </div>
+<div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-[#D4AF37] overflow-hidden">
+  
+  {/* LOGIKA PEMILIHAN LOGO */}
+  {method.id === 'bca' ? (
+    // --- LOGO BCA (Teks Bold) ---
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+      <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" fontWeight="900" fontSize="11px" fontFamily="sans-serif">
+        BCA
+      </text>
+    </svg>
+  ) : method.id === 'dana' ? (
+    // --- LOGO DANA (Dompet Digital) ---
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0H3V6h14v8zm-2-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm4 4c1.1 0 2 .9 2 2v6c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-1h16v-5z"/>
+    </svg>
+  ) : (
+    // --- LOGO DEFAULT (Kartu Kredit/Bank Lain) ---
+    <CreditCard size={20} />
+  )}
+
+</div>
                             <div>
                                 <h5 className="font-bold text-[#FDF8E8] text-sm">{method.bank} <span className="text-[10px] font-normal text-gray-400">({method.owner})</span></h5>
                                 <p className="font-mono text-[#D4AF37] text-lg tracking-wider">{method.number}</p>

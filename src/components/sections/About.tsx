@@ -55,7 +55,7 @@ export default function About() {
                   <h2 className="font-abril text-4xl md:text-5xl text-[#3E2723] mt-2">Kualitas Sultan,<br/>Harga Teman.</h2>
               </div>
               <p className="text-[#5D4037] text-lg leading-relaxed mb-6">
-                  "Papa Gembul" lahir dari keinginan sederhana: menghadirkan kurma berkualitas terbaik yang biasanya hanya ada di hotel bintang lima, langsung ke meja makan keluarga Indonesia.
+                  Jujur, awalnya Papa nyetok kurma ini cuma buat dimakan sendiri (maklum, hobi ngunyah). Eh, kok enak banget? Daripada dosa dinikmati sendirian, ya udah Papa jual aja. Intinya ini kurma yang udah lolos seleksi perut Papa Gembul. Jaminan lumer!
               </p>
               <div className="flex gap-8">
                   <div>
@@ -64,7 +64,7 @@ export default function About() {
                   </div>
                   <div>
                       <h4 className="font-abril text-4xl text-[#D4AF37]">5000+</h4>
-                      <p className="text-sm font-bold">Terjual</p>
+                      <p className="text-sm font-bold">Terjual Kali yee</p>
                   </div>
               </div>
           </div>

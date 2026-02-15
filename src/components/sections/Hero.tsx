@@ -40,7 +40,7 @@ export default function Hero() {
          </h1>
 
          <p className="hero-fade text-base md:text-2xl max-w-xl mx-auto mb-8 md:mb-12 font-medium text-[#5D4037] leading-relaxed px-4">
-           Rasakan kenikmatan kurma premium dari tanah suci. <br className="hidden md:block"/>Dikemas spesial untuk keluarga Indonesia.
+           Lebih manis dari janji dia, lebih legit dari omongan tetangga. <br className="hidden md:block"/>was khilaf, beli sekilo nanti nyesel... nyesel kenapa gak beli dua kilo!.
          </p>
 
          <div className="hero-fade flex flex-col sm:flex-row gap-4 justify-center items-center w-full px-4">
