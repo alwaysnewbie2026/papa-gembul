@@ -20,9 +20,7 @@ body {
 
 html { scroll-behavior: smooth; }
 
-/* --- CUSTOM ANIMATIONS --- */
-
-/* 1. Marquee (Teks Berjalan) */
+/* ANIMASI MARQUEE (Running Text) */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -31,16 +29,31 @@ html { scroll-behavior: smooth; }
   animation: marquee 20s linear infinite;
 }
 
-/* 2. Infinite Scroll (Testimoni Berjalan) */
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.animate-scroll {
-  animation: scroll-left 40s linear infinite;
+/* --- OPTIMASI KHUSUS HP KENTANG (Layar < 768px) --- */
+@media (max-width: 768px) {
+  /* Matikan Blur Berat */
+  .backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    background-color: rgba(253, 248, 232, 0.98) !important;
+  }
+  
+  /* Kurangi Bayangan Berat */
+  * { box-shadow: none !important; }
+  
+  /* Kecuali tombol & kartu produk tetap ada shadow dikit */
+  button, .group, img {
+    box-shadow: 2px 2px 0px 0px #3E2723 !important;
+  }
+
+  /* Matikan Smooth Scroll di HP biar responsif */
+  html { scroll-behavior: auto !important; }
+
+  /* Optimasi Render Gambar */
+  img { will-change: opacity; transform: translateZ(0); }
 }
 
-/* Pause animasi saat di-hover mouse agar user bisa baca */
-.pause-on-hover:hover {
-  animation-play-state: paused;
+/* Optimasi Rendering Halaman Panjang */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
 }

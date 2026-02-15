@@ -1,35 +1,40 @@
 import React from 'react';
+import dynamic from 'next/dynamic'; // Untuk Lazy Load section berat
 import Navbar from '@/components/ui/Navbar';
-import FloatingButtons from '@/components/ui/FloatingButtons';
 import Hero from '@/components/sections/Hero';
-import About from '@/components/sections/About';
-import Process from '@/components/sections/Process';
-import Catalog from '@/components/sections/Catalog';
-import Testimonials from '@/components/sections/Testimonials';
-import Footer from '@/components/ui/Footer';
 import DateFruitIcon from '@/components/ui/DateFruitIcon';
+
+// ✅ PERBAIKAN: Import FloatingButtons secara biasa (Static)
+// Karena komponen ini sudah punya 'use client' di dalamnya, dia aman.
+// Menggunakan dynamic({ ssr: false }) di sini lah yang menyebabkan error build.
+import FloatingButtons from '@/components/ui/FloatingButtons';
+
+// --- CODE SPLITTING (OPTIMASI PERFORMANCE) ---
+// Kita gunakan dynamic import untuk bagian bawah halaman.
+// Browser tidak akan memprioritaskan download kode ini di awal.
+// Hapus { ssr: true } karena itu default, kodenya jadi lebih bersih.
+const About = dynamic(() => import('@/components/sections/About'));
+const Process = dynamic(() => import('@/components/sections/Process'));
+const Catalog = dynamic(() => import('@/components/sections/Catalog'));
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'));
+const Footer = dynamic(() => import('@/components/ui/Footer'));
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden selection:bg-[#D4AF37] selection:text-white">
-      {/* Navigasi Atas */}
+      {/* Navbar & Hero dimuat instan untuk LCP (Largest Contentful Paint) yang bagus */}
       <Navbar />
-
-      {/* Bagian Hero (Judul Besar) */}
       <Hero />
 
-      {/* --- Marquee / Running Text Section --- */}
-      {/* Kita taruh di sini sebagai pemisah antara Hero dan About */}
+      {/* MARQUEE (Running Text) */}
       <div className="bg-[#3E2723] py-4 overflow-hidden border-y-4 border-[#D4AF37] rotate-[-1deg] origin-left scale-105 z-20 relative shadow-xl">
-        {/* Container animasi */}
         <div className="flex w-max animate-marquee">
-          {/* Kita duplikat kontennya supaya looping-nya halus (seamless) */}
-          {[...Array(2)].map((_, groupIndex) => (
+          {[...Array(3)].map((_, groupIndex) => (
             <div key={groupIndex} className="flex gap-8 px-4">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="flex items-center gap-4 text-[#FDF8E8] font-abril text-2xl md:text-4xl uppercase tracking-wider">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex items-center gap-4 text-[#FDF8E8] font-abril text-2xl md:text-3xl uppercase tracking-wider">
                    <span>Premium Dates</span>
-                   <span className="text-[#D4AF37]"><DateFruitIcon className="w-8 h-8" /></span>
+                   <span className="text-[#D4AF37]"><DateFruitIcon className="w-6 h-6 md:w-8 md:h-8" /></span>
                    <span>Papa Gembul</span>
                    <span className="text-[#D4AF37]">✦</span>
                 </div>
@@ -39,22 +44,17 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bagian Tentang Kami */}
-      <About />
+      {/* RENDER OPTIMIZATION */}
+      {/* content-visibility: auto membuat browser menunda rendering bagian ini sampai discroll */}
+      <div className="content-visibility-auto">
+        <About />
+        <Process />
+        <Catalog />
+        <Testimonials />
+        <Footer />
+      </div>
 
-      {/* Bagian Proses Order */}
-      <Process />
-
-      {/* Bagian Katalog Produk */}
-      <Catalog />
-
-      {/* Bagian Testimoni */}
-      <Testimonials />
-
-      {/* Footer Bawah */}
-      <Footer />
-
-      {/* Tombol Melayang (WA & Scroll Up) */}
+      {/* Tombol Melayang */}
       <FloatingButtons />
     </main>
   );
